@@ -1,9 +1,5 @@
 {
-  "build": {
-    "builder": "NIXPACKS",
-    "buildCommand": "npm run css:build"
-  },
   "deploy": {
-    "startCommand": "fastapi run src/main.py --host 0.0.0.0 --port $PORT"
+    "startCommand": "uv run fastapi run src/main.py --host 0.0.0.0 --port $PORT"
   }
 }
