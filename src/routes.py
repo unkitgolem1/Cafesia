@@ -1,3 +1,4 @@
+from datetime import datetime
 from fastapi import APIRouter
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
@@ -8,6 +9,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 templates = Jinja2Templates(directory=str(BASE_DIR / "static" / "templates"))
+templates.env.globals["current_year"] = datetime.now().year
 
 router = APIRouter(prefix="/cafesia")
 
