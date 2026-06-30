@@ -1,0 +1,268 @@
+{% extends "cafesia_base.html" %}
+
+{% block content %}
+
+<!-- START: MAIN CONTENT SECTION -->
+<section class="relative bg-transparent py-16 sm:py-24 lg:py-28 px-5 sm:px-8 lg:px-10">
+
+    <!-- START: TEXTURE PATTERN OVERLAY -->
+    <!-- Nota: el patrón global está en cafesia_base.html con background-attachment: fixed -->
+    <!-- END: TEXTURE PATTERN OVERLAY -->
+
+    <!-- START: CONTENT WRAPPER -->
+    <div class="max-w-6xl mx-auto relative z-10">
+
+        <!-- START: SECTION HEADER -->
+        <div class="text-center mb-12 sm:mb-16">
+            <p class="text-xs font-semibold text-[#735F3C]/80 uppercase tracking-[0.25em]">Manifiesto</p>
+            <h2 class="mt-4 font-[Bodoni_Moda] text-[#1A1A1A] text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">
+                Un espacio natural sin pretensiones
+            </h2>
+            <p class="mt-3 text-[#1A1A1A]/70 text-sm max-w-lg mx-auto font-light leading-relaxed">
+                Creemos que la verdadera sofisticación reside en la sencillez. El jardín no es un escenario: es un ecosistema vivo. Tierra, semillas, café y tiempo.
+            </p>
+        </div>
+        <!-- END: SECTION HEADER -->
+
+        <!-- START: PRODUCT CAROUSEL -->
+        <div id="productos" class="bg-white/[0.015] backdrop-blur-sm border border-white/5 rounded-3xl shadow-2xl p-5 sm:p-8 lg:p-12">
+            {% set items = [
+                {"nombre": "Café de especialidad", "precio": "—", "origen": "Grano", "nota": "Tueste que despierta el fruto", "anchor": "cafe", "imagen": "VasoArtistico.webp"},
+                {"nombre": "Pan artesanal", "precio": "—", "origen": "Fermento", "nota": "Harina, agua, paciencia", "anchor": "pan", "imagen": "BebidasPan.webp"},
+                {"nombre": "Bebidas botánicas", "precio": "—", "origen": "Jardín", "nota": "Infusiones de la colección viva", "anchor": "bebidas", "imagen": "todo.webp"},
+                {"nombre": "Plantas del jardín", "precio": "—", "origen": "Raíz", "nota": "Especies del suelo maya", "anchor": "plantas", "imagen": "VentaPlantas.webp"}
+            ] %}
+            <div class="overflow-hidden">
+                <div class="flex carousel-track">
+                    {% for producto in items %}
+                    <div class="w-1/4 shrink-0 px-2 sm:px-3">
+                        <div class="bg-white/20 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-2xl p-5 sm:p-6 flex flex-col h-full">
+
+                            <div class="aspect-[4/3] rounded-xl overflow-hidden mb-4 shadow-[inset_0_2px_6px_rgba(0,0,0,0.04)]">
+                                <img src="https://peeyvkezrtxotawirfwb.supabase.co/storage/v1/object/public/Cafesia/{{ producto.imagen }}"
+                                     alt="{{ producto.nombre }}"
+                                     class="w-full h-full object-cover">
+                            </div>
+
+                            <div class="space-y-1">
+                                <h3 class="font-[Inter] text-[#1A1A1A] text-sm font-semibold tracking-tight">
+                                    {{ producto.nombre }}
+                                </h3>
+                                <p class="text-xs text-[#1A1A1A]/60 font-light">{{ producto.nota }}</p>
+                                <p class="text-sm font-medium text-[#735F3C] pt-1">{{ producto.precio }}</p>
+                            </div>
+
+                            <a href="#{{ producto.anchor }}"
+                               class="mt-auto w-full block text-center text-xs font-medium text-[#735F3C] border border-[#735F3C]/50 px-4 py-2.5 tracking-wider uppercase hover:bg-[#735F3C] hover:text-[#FDFBF7] transition-colors rounded-lg">
+                                Ver detalle
+                            </a>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% for producto in items %}
+                    <div class="w-1/4 shrink-0 px-2 sm:px-3">
+                        <div class="bg-white/20 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-2xl p-5 sm:p-6 flex flex-col h-full">
+
+                            <div class="aspect-[4/3] rounded-xl overflow-hidden mb-4 shadow-[inset_0_2px_6px_rgba(0,0,0,0.04)]">
+                                <img src="https://peeyvkezrtxotawirfwb.supabase.co/storage/v1/object/public/Cafesia/{{ producto.imagen }}"
+                                     alt="{{ producto.nombre }}"
+                                     class="w-full h-full object-cover">
+                            </div>
+
+                            <div class="space-y-1">
+                                <h3 class="font-[Inter] text-[#1A1A1A] text-sm font-semibold tracking-tight">
+                                    {{ producto.nombre }}
+                                </h3>
+                                <p class="text-xs text-[#1A1A1A]/60 font-light">{{ producto.nota }}</p>
+                                <p class="text-sm font-medium text-[#735F3C] pt-1">{{ producto.precio }}</p>
+                            </div>
+
+                            <a href="#{{ producto.anchor }}"
+                               class="mt-auto w-full block text-center text-xs font-medium text-[#735F3C] border border-[#735F3C]/50 px-4 py-2.5 tracking-wider uppercase hover:bg-[#735F3C] hover:text-[#FDFBF7] transition-colors rounded-lg">
+                                Ver detalle
+                            </a>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- END: PRODUCT CAROUSEL -->
+
+        <!-- START: CATÁLOGO DE PLANTAS & TOUR BOTÁNICO -->
+        <div class="mt-10 sm:mt-12 lg:mt-16 bg-white/[0.015] backdrop-blur-sm border border-white/5 rounded-3xl shadow-2xl p-5 sm:p-8 lg:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8">
+
+            <!-- START: CATÁLOGO DE PLANTAS -->
+            <div id="plantas" class="lg:col-span-7 bg-white/20 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 flex flex-col lg:items-start">
+                <div class="aspect-[4/3] rounded-xl overflow-hidden mb-5 shadow-[inset_0_2px_6px_rgba(0,0,0,0.04)]">
+                    <img src="https://peeyvkezrtxotawirfwb.supabase.co/storage/v1/object/public/Cafesia/VentaPlantas.webp"
+                         alt="Plantas del jardín"
+                         class="w-full h-full object-cover" />
+                </div>
+                <p class="text-xs font-semibold text-[#735F3C]/80 uppercase tracking-[0.25em]">Catálogo</p>
+                <h3 class="mt-4 font-[Bodoni_Moda] text-[#1A1A1A] text-2xl sm:text-3xl font-semibold tracking-tight">
+                    Plantas del jardín
+                </h3>
+                <p class="mt-3 text-sm text-[#1A1A1A]/70 leading-relaxed max-w-sm font-light">
+                    Un inventario vivo de especies nativas y exóticas que conviven en el suelo maya. Cada planta cuenta una historia de adaptación, resistencia y belleza. Descubrí nuestra colección y llevate un pedazo del jardín a casa.
+                </p>
+                <a href="/cafesia/catalogo?tab=plantas#contenido"
+                   class="self-start mt-6 bg-[#735F3C] text-[#FDFBF7] px-8 py-3 text-sm font-medium tracking-wide hover:bg-[#735F3C]/90 transition-colors rounded-lg inline-block">
+                    Explorar
+                </a>
+            </div>
+            <!-- END: CATÁLOGO DE PLANTAS -->
+
+            <!-- START: TOUR JARDÍN BOTÁNICO -->
+            <div id="tour" class="lg:col-span-5 bg-white/20 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 flex flex-col lg:items-end lg:text-right relative overflow-hidden">
+
+                <div class="aspect-[4/3] rounded-xl overflow-hidden mb-5 shadow-[inset_0_2px_6px_rgba(0,0,0,0.04)]">
+                    <img src="https://peeyvkezrtxotawirfwb.supabase.co/storage/v1/object/public/Cafesia/JardinBotanico.webp"
+                         alt="Tour botánico guiado"
+                         class="w-full h-full object-cover" />
+                </div>
+
+                <div class="absolute -top-6 -right-6 text-[120px] sm:text-[160px] font-[Bodoni_Moda] text-[#735F3C]/5 leading-none select-none pointer-events-none">
+                    &amp;
+                </div>
+
+                <p class="text-xs font-semibold text-[#735F3C]/80 uppercase tracking-[0.25em] relative">Recorrido</p>
+                <h3 class="mt-4 font-[Bodoni_Moda] text-[#1A1A1A] text-2xl sm:text-3xl font-semibold tracking-tight relative">
+                    Tour botánico guiado
+                </h3>
+                <p class="mt-3 text-sm text-[#1A1A1A]/70 leading-relaxed max-w-sm font-light relative">
+                    Caminar el jardín con el CICY es asistir a una conversación entre siglos: folklore, ciencia, la memoria biológica de una región que no olvida su lengua verde. Una observación profunda que no busca explicar, sino escuchar.
+                </p>
+                <a href="/cafesia/catalogo?tab=plantas#contenido"
+                   class="self-start lg:self-end mt-6 border border-[#735F3C]/50 text-[#735F3C] px-8 py-3 text-sm font-medium tracking-wide hover:bg-[#735F3C] hover:text-[#FDFBF7] transition-colors rounded-lg inline-block">
+                    Conocer
+                </a>
+            </div>
+            <!-- END: TOUR JARDÍN BOTÁNICO -->
+
+            </div>
+        </div>
+        <!-- END: CATÁLOGO DE PLANTAS & TOUR BOTÁNICO -->
+
+        <!-- START: CAFÉ & PAN -->
+        <div class="mt-10 sm:mt-12 lg:mt-16 bg-white/[0.015] backdrop-blur-sm border border-white/5 rounded-3xl shadow-2xl p-5 sm:p-8 lg:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8">
+
+            <!-- START: CAFÉ -->
+            <div id="cafe" class="lg:col-span-5 bg-white/20 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 flex flex-col lg:items-start relative overflow-hidden">
+
+                <div class="aspect-[4/3] rounded-xl overflow-hidden mb-5 shadow-[inset_0_2px_6px_rgba(0,0,0,0.04)]">
+                    <img src="https://peeyvkezrtxotawirfwb.supabase.co/storage/v1/object/public/Cafesia/VasoArtistico.webp"
+                         alt="Café de especialidad"
+                         class="w-full h-full object-cover" />
+                </div>
+
+                <div class="absolute -top-6 -right-6 text-[120px] sm:text-[160px] font-[Bodoni_Moda] text-[#735F3C]/5 leading-none select-none pointer-events-none">
+                    &amp;
+                </div>
+
+                <p class="text-xs font-semibold text-[#735F3C]/80 uppercase tracking-[0.25em] relative">Café</p>
+                <h3 class="mt-4 font-[Bodoni_Moda] text-[#1A1A1A] text-2xl sm:text-3xl font-semibold tracking-tight relative">
+                    Café de especialidad
+                </h3>
+                <p class="mt-3 text-sm text-[#1A1A1A]/70 leading-relaxed max-w-sm font-light relative">
+                    Tueste artesanal que despierta el fruto. Cada lote es seleccionado a mano, tostado en pequeñas cantidades y preparado con precisión para revelar los matices que el suelo y el clima regalaron al grano.
+                </p>
+                <a href="/cafesia/catalogo#contenido"
+                   class="self-start mt-6 bg-[#735F3C] text-[#FDFBF7] px-8 py-3 text-sm font-medium tracking-wide hover:bg-[#735F3C]/90 transition-colors rounded-lg inline-block">
+                    Ver más
+                </a>
+            </div>
+            <!-- END: CAFÉ -->
+
+            <!-- START: PAN -->
+            <div id="pan" class="lg:col-span-7 bg-white/20 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 flex flex-col lg:items-end lg:text-right">
+                <div class="aspect-[4/3] rounded-xl overflow-hidden mb-5 shadow-[inset_0_2px_6px_rgba(0,0,0,0.04)]">
+                    <img src="https://peeyvkezrtxotawirfwb.supabase.co/storage/v1/object/public/Cafesia/BebidasPan.webp"
+                         alt="Pan dulce artesanal"
+                         class="w-full h-full object-cover" />
+                </div>
+                <p class="text-xs font-semibold text-[#735F3C]/80 uppercase tracking-[0.25em]">Panadería</p>
+                <h3 class="mt-4 font-[Bodoni_Moda] text-[#1A1A1A] text-2xl sm:text-3xl font-semibold tracking-tight">
+                    Pan dulce artesanal
+                </h3>
+                <p class="mt-3 text-sm text-[#1A1A1A]/70 leading-relaxed max-w-sm font-light">
+                    Piezas seleccionadas de panadería artesanal con ese toque dulce que acompaña la pausa del café. Cada bocado es un pequeño placer que completa la experiencia.
+                </p>
+                <a href="/cafesia/catalogo#contenido"
+                   class="self-start lg:self-end mt-6 border border-[#735F3C]/50 text-[#735F3C] px-8 py-3 text-sm font-medium tracking-wide hover:bg-[#735F3C] hover:text-[#FDFBF7] transition-colors rounded-lg inline-block">
+                    Ver más
+                </a>
+            </div>
+            <!-- END: PAN -->
+
+            </div>
+        </div>
+        <!-- END: CAFÉ & PAN -->
+
+        <!-- START: BEBIDAS & ALIMENTOS -->
+        <div class="mt-10 sm:mt-12 lg:mt-16 bg-white/[0.015] backdrop-blur-sm border border-white/5 rounded-3xl shadow-2xl p-5 sm:p-8 lg:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8">
+
+            <!-- START: BEBIDAS -->
+            <div id="bebidas" class="lg:col-span-7 bg-white/20 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 flex flex-col lg:items-start">
+                <div class="aspect-[4/3] rounded-xl overflow-hidden mb-5 shadow-[inset_0_2px_6px_rgba(0,0,0,0.04)]">
+                    <img src="https://peeyvkezrtxotawirfwb.supabase.co/storage/v1/object/public/Cafesia/todo.webp"
+                         alt="Bebidas deliciosas"
+                         class="w-full h-full object-cover" />
+                </div>
+                <p class="text-xs font-semibold text-[#735F3C]/80 uppercase tracking-[0.25em]">Bebidas</p>
+                <h3 class="mt-4 font-[Bodoni_Moda] text-[#1A1A1A] text-2xl sm:text-3xl font-semibold tracking-tight">
+                    Bebidas deliciosas
+                </h3>
+                <p class="mt-3 text-sm text-[#1A1A1A]/70 leading-relaxed max-w-sm font-light">
+                    Infusiones de la colección viva del jardín. Tés fríos y calientes elaborados con hierbas, flores y frutos de temporada. Cada sorbo es un recorrido por los aromas que la tierra maya ofrece en silencio.
+                </p>
+                <a href="/cafesia/catalogo#contenido"
+                   class="self-start mt-6 bg-[#735F3C] text-[#FDFBF7] px-8 py-3 text-sm font-medium tracking-wide hover:bg-[#735F3C]/90 transition-colors rounded-lg inline-block">
+                    Ver más
+                </a>
+            </div>
+            <!-- END: BEBIDAS -->
+
+            <!-- START: ALIMENTOS -->
+            <div id="alimentos" class="lg:col-span-5 bg-white/20 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 flex flex-col lg:items-end lg:text-right relative overflow-hidden">
+
+                <div class="aspect-[4/3] rounded-xl overflow-hidden mb-5 shadow-[inset_0_2px_6px_rgba(0,0,0,0.04)]">
+                    <img src="https://peeyvkezrtxotawirfwb.supabase.co/storage/v1/object/public/Cafesia/Bowl.webp"
+                         alt="Comida saludable"
+                         class="w-full h-full object-cover" />
+                </div>
+
+                <div class="absolute -top-6 -right-6 text-[120px] sm:text-[160px] font-[Bodoni_Moda] text-[#735F3C]/5 leading-none select-none pointer-events-none">
+                    &amp;
+                </div>
+
+                <p class="text-xs font-semibold text-[#735F3C]/80 uppercase tracking-[0.25em] relative">Alimentos</p>
+                <h3 class="mt-4 font-[Bodoni_Moda] text-[#1A1A1A] text-2xl sm:text-3xl font-semibold tracking-tight relative">
+                    Comida saludable
+                </h3>
+                <p class="mt-3 text-sm text-[#1A1A1A]/70 leading-relaxed max-w-sm font-light relative">
+                    Plato consciente, ingrediente local. Ensaladas de temporada, bowls nutritivos y opciones veganas preparadas con lo que el jardín y el mercado ofrecen. Comer acá es volver a lo simple, sin renunciar al sabor.
+                </p>
+                <a href="/cafesia/catalogo#contenido"
+                   class="self-start lg:self-end mt-6 border border-[#735F3C]/50 text-[#735F3C] px-8 py-3 text-sm font-medium tracking-wide hover:bg-[#735F3C] hover:text-[#FDFBF7] transition-colors rounded-lg inline-block">
+                    Ver más
+                </a>
+            </div>
+            <!-- END: ALIMENTOS -->
+
+            </div>
+        </div>
+        <!-- END: BEBIDAS & ALIMENTOS -->
+
+    </div>
+    <!-- END: CONTENT WRAPPER -->
+
+</section>
+<!-- END: MAIN CONTENT SECTION -->
+
+{% endblock %}

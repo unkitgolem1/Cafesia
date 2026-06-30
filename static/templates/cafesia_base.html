@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Cafesia{% endblock %}</title>
+    <link rel="icon" type="image/svg+xml" href="https://peeyvkezrtxotawirfwb.supabase.co/storage/v1/object/public/Cafesia/logo_final.svg">
+
+    <!-- STYLE: Hero animations (entrada cinemática + flote premium) -->
+    <style>
+        .animate-entrance {
+            animation: appleEntrance 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            will-change: transform, opacity;
+        }
+        @keyframes appleEntrance {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .animate-premium-float {
+            animation: breathingFloat 6s ease-in-out infinite 1.4s;
+            will-change: transform;
+        }
+        @keyframes breathingFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .pattern-card {
+            position: relative;
+            isolation: isolate;
+        }
+        .pattern-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('https://peeyvkezrtxotawirfwb.supabase.co/storage/v1/object/public/Cafesia/patron_fondo.webp');
+            background-repeat: repeat;
+            background-attachment: fixed;
+            opacity: 0.04;
+            pointer-events: none;
+            border-radius: inherit;
+            z-index: -1;
+        }
+        .carousel-track {
+            animation: carouselScroll 16s linear infinite;
+        }
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+        @keyframes carouselScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="/static/css/output.css">
+
+    <!-- CDN: HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+
+    <!-- CDN: Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="font-[Inter] text-[#1A1A1A] bg-[#FDFBF7] antialiased">
+
+    <!-- START: PATRÓN DE FONDO GLOBAL (fixed — una sola carga, continuidad visual en toda la página) -->
+    <div class="fixed inset-0 z-0 pointer-events-none select-none"
+         style="background-image: url('https://peeyvkezrtxotawirfwb.supabase.co/storage/v1/object/public/Cafesia/patron_fondo.webp');
+                background-repeat: repeat;
+                background-attachment: fixed;
+                opacity: 0.08;">
+    </div>
+    <!-- END: PATRÓN DE FONDO GLOBAL -->
+
+    <!-- START: HERO SECTION -->
+    <header class="relative bg-[#735F3C] min-h-dvh flex flex-col overflow-hidden"
+            style="background-image: url('https://peeyvkezrtxotawirfwb.supabase.co/storage/v1/object/public/Cafesia/Hero.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+
+        <!-- START: HERO GRADIENT OVERLAY -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/50 pointer-events-none"></div>
+        <!-- END: HERO GRADIENT OVERLAY -->
+
+        <!-- START: NAVBAR -->
+        <nav class="relative z-20 flex items-center justify-between px-5 sm:px-10 py-5 sm:py-6">
+            <a href="/cafesia" class="relative font-[Bodoni_Moda] text-[#FDFBF7] text-lg sm:text-2xl tracking-[0.25em] uppercase font-semibold before:absolute before:inset-[-6px] before:content-['']">Cafesia</a>
+            <div class="flex items-center gap-5 sm:gap-8">
+                <a href="/cafesia" class="relative text-[#FDFBF7]/80 text-[10px] sm:text-xs tracking-[0.15em] uppercase font-light hover:text-[#FDFBF7] transition-colors whitespace-nowrap before:absolute before:inset-[-6px] before:content-['']">Inicio</a>
+                <a href="/cafesia/catalogo#contenido" class="relative text-[#FDFBF7]/80 text-[10px] sm:text-xs tracking-[0.15em] uppercase font-light hover:text-[#FDFBF7] transition-colors whitespace-nowrap before:absolute before:inset-[-6px] before:content-['']">Catálogo</a>
+                <a href="/cafesia/nosotros#contenido" class="relative text-[#FDFBF7]/80 text-[10px] sm:text-xs tracking-[0.15em] uppercase font-light hover:text-[#FDFBF7] transition-colors whitespace-nowrap before:absolute before:inset-[-6px] before:content-['']">Nosotros</a>
+            </div>
+        </nav>
+        <!-- END: NAVBAR -->
+
+        <!-- START: HERO LOGO CONTAINER -->
+        <div class="relative z-10 flex-1 flex items-center justify-center px-5 sm:px-12 py-8">
+            <div class="animate-entrance">
+                <div class="animate-premium-float">
+                    <a href="/cafesia">
+                        <img src="https://peeyvkezrtxotawirfwb.supabase.co/storage/v1/object/public/Cafesia/cafesia_final%20(1).svg"
+                             alt="Cafesia"
+                             class="w-full max-w-sm md:max-w-md h-auto object-contain mx-auto">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- END: HERO LOGO CONTAINER -->
+
+    </header>
+    <!-- END: HERO SECTION -->
+
+    <!-- START: MAIN CONTENT -->
+    <main id="contenido">
+        {% block content %}{% endblock %}
+    </main>
+    <!-- END: MAIN CONTENT -->
+
+    <!-- START: FOOTER -->
+    <footer class="relative z-10 bg-[#FDFBF7] border-t border-[#1A1A1A]/8 py-12 sm:py-14 px-5 sm:px-10">
+        <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="col-span-2 md:col-span-1">
+                <span class="font-[Bodoni_Moda] text-[#735F3C] text-lg tracking-[0.2em] uppercase font-semibold">Cafesia</span>
+                <p class="mt-3 text-sm text-[#1A1A1A]/50 leading-relaxed max-w-xs">
+                    Café de especialidad. Jardín botánico. Desde 2023.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-xs font-semibold text-[#1A1A1A] uppercase tracking-wider mb-4">Tienda</h4>
+                <ul class="space-y-2 text-sm text-[#1A1A1A]/60">
+                    <li><a href="/cafesia/catalogo#contenido" class="hover:text-[#735F3C] transition-colors">Catálogo</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xs font-semibold text-[#1A1A1A] uppercase tracking-wider mb-4">Nosotros</h4>
+                <ul class="space-y-2 text-sm text-[#1A1A1A]/60">
+                    <li><a href="/cafesia/nosotros#contenido" class="hover:text-[#735F3C] transition-colors">Historia</a></li>
+                    <li><a href="/cafesia/nosotros#contenido" class="hover:text-[#735F3C] transition-colors">Contacto</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xs font-semibold text-[#1A1A1A] uppercase tracking-wider mb-4">Legal</h4>
+                <ul class="space-y-2 text-sm text-[#1A1A1A]/60">
+                    <li><a href="#" class="hover:text-[#735F3C] transition-colors">Términos</a></li>
+                    <li><a href="#" class="hover:text-[#735F3C] transition-colors">Privacidad</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto mt-10 pt-6 border-t border-[#1A1A1A]/8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-[#1A1A1A]/40">
+            <p>&copy; 2026 Cafesia. Todos los derechos reservados.</p>
+            <p>Hecho con granos y dedicación</p>
+        </div>
+    </footer>
+    <!-- END: FOOTER -->
+
+</body>
+</html>

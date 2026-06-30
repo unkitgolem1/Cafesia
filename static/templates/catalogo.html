@@ -1,0 +1,97 @@
+{% extends "cafesia_base.html" %}
+
+{% block title %}Catálogo — Cafesia{% endblock %}
+
+{% block content %}
+
+<section class="relative bg-transparent py-16 sm:py-24 lg:py-28 px-5 sm:px-8 lg:px-10">
+    <div class="max-w-6xl mx-auto relative z-10">
+
+        <div class="text-center mb-12 sm:mb-16">
+            <p class="text-xs font-semibold text-[#735F3C]/80 uppercase tracking-[0.25em]">Catálogo</p>
+            <h2 class="mt-4 font-[Bodoni_Moda] text-[#1A1A1A] text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">
+                Descubrí nuestra oferta
+            </h2>
+            <p class="mt-3 text-[#1A1A1A]/70 text-sm max-w-lg mx-auto font-light leading-relaxed">
+                Todo lo que hacemos, desde el grano hasta la raíz.
+            </p>
+        </div>
+
+        <input type="radio" name="catalogo-tab" id="tab-menu" class="hidden peer/menu" {% if active_tab != "plantas" %}checked{% endif %}>
+        <input type="radio" name="catalogo-tab" id="tab-plantas" class="hidden peer/plantas" {% if active_tab == "plantas" %}checked{% endif %}>
+
+        <div class="flex justify-center gap-4 mb-12">
+            <label for="tab-menu"
+                   class="px-8 py-3 rounded-full text-sm font-medium cursor-pointer transition-all duration-300
+                          peer-checked/menu:bg-[#735F3C] peer-checked/menu:text-[#FDFBF7] peer-checked/menu:shadow-lg
+                          bg-transparent text-[#735F3C] border border-[#735F3C]/50
+                          hover:bg-[#735F3C]/10">
+                Menú
+            </label>
+            <label for="tab-plantas"
+                   class="px-8 py-3 rounded-full text-sm font-medium cursor-pointer transition-all duration-300
+                          peer-checked/plantas:bg-[#735F3C] peer-checked/plantas:text-[#FDFBF7] peer-checked/plantas:shadow-lg
+                          bg-transparent text-[#735F3C] border border-[#735F3C]/50
+                          hover:bg-[#735F3C]/10">
+                Plantas
+            </label>
+        </div>
+
+        <div class="hidden peer-checked/menu:block">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {% for item in [
+                    {"nombre": "Café de especialidad", "descripcion": "Tueste artesanal que despierta el fruto. Cada lote es seleccionado a mano.", "precio": "—", "imagen": "VasoArtistico.webp"},
+                    {"nombre": "Pan artesanal", "descripcion": "Harina, agua, paciencia. Fermentación lenta, horno de piedra.", "precio": "—", "imagen": "BebidasPan.webp"},
+                    {"nombre": "Bebidas botánicas", "descripcion": "Infusiones de la colección viva del jardín. Tés fríos y calientes.", "precio": "—", "imagen": "todo.webp"},
+                    {"nombre": "Comida saludable", "descripcion": "Plato consciente, ingrediente local. Ensaladas, bowls y opciones veganas.", "precio": "—", "imagen": "Bowl.webp"}
+                ] %}
+                <div class="bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-2xl p-5 sm:p-6 flex flex-col">
+                    <div class="aspect-[4/3] bg-[#F5F2EB] rounded-xl overflow-hidden mb-5 shadow-[inset_0_2px_6px_rgba(0,0,0,0.04)]">
+                        <img src="https://peeyvkezrtxotawirfwb.supabase.co/storage/v1/object/public/Cafesia/{{ item.imagen }}"
+                             alt="{{ item.nombre }}"
+                             class="w-full h-full object-cover" />
+                    </div>
+                    <h3 class="font-[Inter] text-[#1A1A1A] text-base font-semibold tracking-tight">{{ item.nombre }}</h3>
+                    <p class="mt-2 text-sm text-[#1A1A1A]/60 font-light leading-relaxed flex-1">{{ item.descripcion }}</p>
+                    <p class="mt-4 text-sm font-medium text-[#735F3C]">Consultar precio</p>
+                    <label for="modal-toggle"
+                           class="mt-3 w-full block text-center text-xs font-medium text-[#735F3C] border border-[#735F3C]/50 px-4 py-2.5 tracking-wider uppercase hover:bg-[#735F3C] hover:text-[#FDFBF7] transition-colors rounded-lg cursor-pointer">
+                        Ver detalle
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="hidden peer-checked/plantas:block">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for item in [
+                    {"nombre": "Helecho cuerno de alce", "descripcion": "Planta epífita de crecimiento lento. Ideal para interiores con luz indirecta.", "origen": "Maya"},
+                    {"nombre": "Suculenta cola de burro", "descripcion": "Resistente y de bajo mantenimiento. Perfecta para principiantes.", "origen": "Maya"},
+                    {"nombre": "Palma camedor", "descripcion": "Palma de interior que purifica el aire. Originaria de selvas tropicales.", "origen": "Maya"},
+                    {"nombre": "Cafeto arábica", "descripcion": "La planta que da origen a nuestro café. Hermosa y productiva.", "origen": "Maya"},
+                    {"nombre": "Menta piperita", "descripcion": "Aromática y refrescante. Usada en nuestras infusiones botánicas.", "origen": "Maya"},
+                    {"nombre": "Orquídea brassavola", "descripcion": "Orquídea nativa de la región. Floración fragante y elegante.", "origen": "Maya"}
+                ] %}
+                <div class="bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-2xl p-5 sm:p-6 flex flex-col">
+                    <div class="aspect-[4/3] bg-[#F5F2EB] rounded-xl overflow-hidden mb-5 shadow-[inset_0_2px_6px_rgba(0,0,0,0.04)]">
+                        <div class="w-full h-full flex items-center justify-center text-[#735F3C]/15 font-[Bodoni_Moda] text-lg tracking-[0.2em] uppercase select-none">
+                            {{ item.origen }}
+                        </div>
+                    </div>
+                    <h3 class="font-[Inter] text-[#1A1A1A] text-base font-semibold tracking-tight">{{ item.nombre }}</h3>
+                    <p class="mt-2 text-sm text-[#1A1A1A]/60 font-light leading-relaxed flex-1">{{ item.descripcion }}</p>
+                    <p class="mt-4 text-xs text-[#735F3C]/70 font-light italic">Disponible en vivero</p>
+                    <label for="modal-toggle"
+                           class="mt-3 w-full block text-center text-xs font-medium text-[#735F3C] border border-[#735F3C]/50 px-4 py-2.5 tracking-wider uppercase hover:bg-[#735F3C] hover:text-[#FDFBF7] transition-colors rounded-lg cursor-pointer">
+                        Ver detalle
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
