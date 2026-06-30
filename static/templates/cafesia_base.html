@@ -77,6 +77,14 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-5px); }
         }
+        .animate-float-strong {
+            animation: floatStrong 3s ease-in-out infinite 2.8s;
+            will-change: transform;
+        }
+        @keyframes floatStrong {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
         .pattern-card {
             position: relative;
             isolation: isolate;
