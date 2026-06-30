@@ -39,9 +39,4 @@ async def nosotros(request: Request):
     )
 
 
-@router.get("/fragmento_html", response_class=HTMLResponse)
-async def fragmento_html(request: Request):
-    return templates.TemplateResponse(
-        request=request,
-        name="cafesia_fragmento.html",
-    )
+
