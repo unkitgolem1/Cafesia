@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-MX">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Cafesia{% endblock %}</title>
+    <title>{% block title %}Cafesia — Café de especialidad y jardín botánico en Mérida{% endblock %}</title>
+    <meta name="description" content="{% block description %}Café de especialidad y jardín botánico en Mérida. Tueste artesanal, panadería artesanal, plantas nativas del suelo maya y experiencias botánicas en el CICY.{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}café de especialidad, jardín botánico, Mérida, Yucatán, CICY, café artesanal, pan artesanal, plantas mayas, tostadero, cafetería Mérida{% endblock %}">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#735F3C">
     <link rel="icon" type="image/svg+xml" href="https://peeyvkezrtxotawirfwb.supabase.co/storage/v1/object/public/Cafesia/logo_final.svg">
+    {% block canonical %}<link rel="canonical" href="https://cafesia.mx/cafesia">{% endblock %}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}Cafesia — Café de especialidad y jardín botánico{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Café de especialidad, pan artesanal y jardín botánico en Mérida. Tueste artesanal, plantas nativas y experiencias botánicas en el CICY.{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}https://peeyvkezrtxotawirfwb.supabase.co/storage/v1/object/public/Cafesia/Hero.webp{% endblock %}">
+    <meta property="og:url" content="{% block og_url %}https://cafesia.mx/cafesia{% endblock %}">
+    <meta property="og:locale" content="es_MX">
+    <meta property="og:site_name" content="Cafesia">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}Cafesia — Café de especialidad y jardín botánico{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Café de especialidad, pan artesanal y jardín botánico en Mérida. Tueste artesanal, plantas nativas y experiencias botánicas en el CICY.{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}https://peeyvkezrtxotawirfwb.supabase.co/storage/v1/object/public/Cafesia/Hero.webp{% endblock %}">
+
+    <!-- JSON-LD Structured Data -->
+    {% block seo_jsonld %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CafeOrCoffeeShop",
+        "@id": "https://cafesia.mx/cafesia",
+        "name": "Cafesia",
+        "description": "Café de especialidad, tostadero artesanal y jardín botánico en el interior del Jardín Botánico Regional Roger Orellana (CICY), Mérida, Yucatán.",
+        "url": "https://cafesia.mx/cafesia",
+        "telephone": "+529992002793",
+        "email": "cafesia.mx@gmail.com",
+        "image": "https://peeyvkezrtxotawirfwb.supabase.co/storage/v1/object/public/Cafesia/Hero.webp",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "C. 43 130, Interior del Jardín Botánico Regional Roger Orellana (CICY), Chuburná de Hidalgo",
+            "addressLocality": "Mérida",
+            "addressRegion": "Yucatán",
+            "postalCode": "97205",
+            "addressCountry": "MX"
+        },
+        "openingHoursSpecification": [
+            {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "08:00", "closes": "18:00"}
+        ],
+        "sameAs": [
+            "https://www.instagram.com/cafesia_mx/",
+            "https://www.facebook.com/p/Cafesia-61575987452815/"
+        ]
+    }
+    </script>
+    {% endblock %}
 
     <!-- STYLE: Hero animations (entrada cinemática + flote premium) -->
     <style>
